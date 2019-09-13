@@ -1,0 +1,4 @@
+forestopenfermion==0.0.5
+openfermion==0.10.0
+openfermionpyscf==0.4
+pyquil==2.11.0
