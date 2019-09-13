@@ -34,7 +34,9 @@ class AnsatzCircuitGenerator:
 
         return Program('PRAGMA PRESERVE_BLOCK') + p + Program('PRAGMA END_PRESERVE_BLOCK')
     
+    
     def _apply_random_gates(self, thetas):
+        random.seed(99999)
         gates = []
         L = len(thetas)
         for i in range(len(self.qubits)):
@@ -53,7 +55,6 @@ class AnsatzCircuitGenerator:
     
     
     
-# function to implement the loop in step 2 of the algorithm
 def get_ansatz_circuit_genrator(qubits, depth):
     """
     function to create the circuit for VQE ansatz state
@@ -65,7 +66,7 @@ def get_ansatz_circuit_genrator(qubits, depth):
         vqe_ansatz = Program()
         vqe_ansatz += generator.generate_first_layer(thetas[:len(qubits)])
         for k in range(depth):
-            vqe_ansatz += generator.generate(thetas) #thetas[k:k+2]
+            vqe_ansatz += generator.generate(thetas[len(qubits):]) #thetas[k:k+2]
         return vqe_ansatz
     
     return get_random_circuit
