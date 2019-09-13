@@ -26,14 +26,12 @@ class AnsatzCircuitGenerator:
             
         return Program('PRAGMA PRESERVE_BLOCK') + p + Program('PRAGMA END_PRESERVE_BLOCK')
     
-    
     def generate(self, thetas) -> Program:
         p = Program()
         p.inst(self._entangle())
         p.inst(self._apply_random_gates(thetas))
 
         return Program('PRAGMA PRESERVE_BLOCK') + p + Program('PRAGMA END_PRESERVE_BLOCK')
-    
     
     def _apply_random_gates(self, thetas):
         random.seed(99999)
@@ -48,11 +46,8 @@ class AnsatzCircuitGenerator:
             
         return gates
         
-        
     def _entangle(self):
         return [CZ(self.qubits[i], self.qubits[i+1]) for i in range(len(self.qubits)-1)]
-    
-    
     
     
 def get_ansatz_circuit_genrator(qubits, depth):
