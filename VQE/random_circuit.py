@@ -14,7 +14,7 @@ class AnsatzCircuitGenerator:
     two methods apply entangling gates and single qubit rotation gates on specified qubits.
     the 'generate' method does the work utilizing the other two methods
     PRAGMA PRESERVE_BLOCK and PRAGMA END_PRESERVE_BLOCK make sure to apply 
-    necessary operations in tact
+    necessary operations without the compiler optimizing for gates
     """
     def __init__(self, qubits, depth):
         self.qubits = qubits
@@ -50,7 +50,7 @@ class AnsatzCircuitGenerator:
         return [CZ(self.qubits[i], self.qubits[i+1]) for i in range(len(self.qubits)-1)]
     
     
-def get_ansatz_circuit_genrator(qubits, depth):
+def get_ansatz_circuit_generator(qubits, depth):
     """
     function to create the circuit for VQE ansatz state
     :param qubits: list, numbers in the list specify the qubits to apply gates
